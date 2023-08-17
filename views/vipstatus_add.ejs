@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VipStatus</title>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <h1>Создание пользователя</h1>
+
+  <form method="POST" action="/api/direction/vipstatus/save_add">
+    <label for="name">Id</label>
+    <input type="text" name="id" required>
+    <br>
+
+    <label for="name">Имя:</label>
+    <input type="text" name="name" required>
+    <br>
+
+    <label for="level">Уровень:</label>
+    <input type="number" name="level" id="lvl" value="1" required>
+    <button type="button" onclick="changeValue('lvl', -1)">-</button>
+    <button type="button" onclick="changeValue('lvl', 1)">+</button>
+    <br>
+
+    <label for="experience">Опыт:</label>
+    <input type="number" name="experience" id="experience" value="0" required>
+    <button type="button" onclick="changeValue('experience', -100)">-100</button>
+    <button type="button" onclick="changeValue('experience', -10)">-10</button>
+    <button type="button" onclick="changeValue('experience', -1)">-1</button>
+    <button type="button" onclick="changeValue('experience', 1)">+1</button>
+    <button type="button" onclick="changeValue('experience', 10)">+10</button>
+    <button type="button" onclick="changeValue('experience', 100)">+100</button>
+    <br>
+
+    <label for="balance">Баланс:</label>
+    <input type="number" name="money" id="balance" value="0" required>
+    <button type="button" onclick="changeValue('balance', -100)">-100</button>
+    <button type="button" onclick="changeValue('balance', -10)">-10</button>
+    <button type="button" onclick="changeValue('balance', -1)">-1</button>
+    <button type="button" onclick="changeValue('balance', 1)">+1</button>
+    <button type="button" onclick="changeValue('balance', 10)">+10</button>
+    <button type="button" onclick="changeValue('balance', 100)">+100</button>
+    <br>
+
+    <button type="submit">Сохранить</button>
+    <button><a href="/api/direction/vipstatus">Назад</a></button>
+  </form>
+
+  <script>
+    async function changeValue(field, amount) {
+      const input = document.getElementById(field);
+      if (field == "experience") {
+        const input2 = document.getElementById("lvl")
+        const updateValue = await upLvl(parseInt(input2.value), parseInt(input.value) + amount);
+        input.value = updateValue.exp;
+        input2.value = updateValue.lvl;
+      } else {
+        input.value = parseInt(input.value) + amount;
+      }
+    }
+
+    async function upLvl(lvl, exp) {
+      try {
+        const response = await fetch('/api/direction/vipstatus/lvlConfig');
+        const data = await response.json();
+
+        if (exp >= data.lvlBorder[lvl - 1]) {
+          lvl += 1;
+          exp -= data.lvlBorder[lvl - 2];
+        }
+        return {
+          lvl,
+          exp
+        };
+      } catch (error) {
+        console.error(error);
+        return {
+          lvl,
+          exp
+        };
+      }
+    }
+  </script>
+</body>
+
+</html>

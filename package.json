@@ -1,0 +1,22 @@
+{
+  "name": "rodocraft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "RodoCraft.js",
+  "scripts": {
+    "start": "nodemon RodoCraft.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "discord.js": "^14.11.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
