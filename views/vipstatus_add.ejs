@@ -63,7 +63,7 @@
 
     async function upLvl(lvl, exp) {
       try {
-        const response = await fetch('/api/direction/vipstatus/lvlConfig');
+        const response = await fetch('/api/direction/vipstatus/config');
         const data = await response.json();
 
         if (exp >= data.lvlBorder[lvl - 1]) {
