@@ -8,9 +8,10 @@ const VipStatus = require('./models/vipstatus.js');
 const databaseToken = "mongodb+srv://Raphael:As213411@rodoro.wzfcq.mongodb.net/RodoCraft?retryWrites=true&w=majority";
 const discordBot = require('./bot/discord/index.js');
 const { fail } = require('assert');
+const vipStatusTools = require('./lib/admin/vipStatus/updateLvl.js')
 
 //TODO 
-//вынести функцию infoLvl в отдельный модуль
+//+вынести функцию infoLvl в отдельный модуль
 //переписать клиентский js
 //переписать выдачу лвл, чтобы опыт не обнулялся при получение лвл
 //ограничение по количеству лвл от 0 до длины масива
@@ -22,6 +23,9 @@ const { fail } = require('assert');
 //переписать подключение к бд
 //переписать маршрутизацию
 //переписать файл с токенами
+//перенаправить весь api на admin
+//дописать функцию updateLvl
+//сделать экспорт полностья модуля а не по одной функции
 
 db = true;
 (async () => {
@@ -95,8 +99,7 @@ app.post('/api/direction/vipstatus/save/:id', async (req, res) => {
 
       const user = await VipStatus.findOne({ userId: userId.id });
 
-      var vipStatusTools = require('./function/vipStatus/infoLvl.js')
-      vipStatusTools.infoLvl(req.body.level, user.lvl, user.userId)
+      vipStatusTools.updateLvl(req.body.level, user.lvl, user.userId)
   
       // Нахождение пользователя по его ID и обновление его данных
       await VipStatus.updateOne(
@@ -118,6 +121,7 @@ app.post('/api/direction/vipstatus/save/:id', async (req, res) => {
 
 app.post('/api/direction/vipstatus/save_add', async (req, res) => {
     try {
+      vipStatusTools.updateLvl(req.body.level, 0, req.body.id)
       await VipStatus.create(
         {
           userId: req.body.id,
