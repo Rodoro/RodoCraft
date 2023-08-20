@@ -23,9 +23,10 @@ const vipStatusTools = require('./lib/admin/vipStatus/updateLvl.js')
 //переписать подключение к бд
 //переписать маршрутизацию
 //переписать файл с токенами
-//перенаправить весь api на admin
+//+перенаправить весь api на admin
 //дописать функцию updateLvl
-//сделать экспорт полностья модуля а не по одной функции
+//сделать экспорт полностья модуля а не по одной функци
+//добавить поддомены заместо admin
 
 db = true;
 (async () => {
@@ -38,11 +39,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/api/main', (req, res) => {
+app.get('/admin/', (req, res) => {
     res.render('main');
 });
 
-app.get('/api/direction/vipstatus/', async (req, res) => {
+app.get('/admin/direction/vipstatus/', async (req, res) => {
   try {
     const users = null;
     if(db==true){
@@ -56,7 +57,7 @@ app.get('/api/direction/vipstatus/', async (req, res) => {
   }
 });
 
-app.post('/api/direction/vipstatus/', async (req, res) => {
+app.post('/admin/direction/vipstatus/', async (req, res) => {
   try {
     const users = await VipStatus.find();
 
@@ -67,7 +68,7 @@ app.post('/api/direction/vipstatus/', async (req, res) => {
   }
 });
 
-app.get('/api/direction/vipstatus/edit/:id', async (req, res) => {
+app.get('/admin/direction/vipstatus/edit/:id', async (req, res) => {
     try {
       const userId = req.params.id;
 
@@ -84,7 +85,7 @@ app.get('/api/direction/vipstatus/edit/:id', async (req, res) => {
     }
   });
 
-app.get('/api/direction/vipstatus/add', async (req, res) => {
+app.get('/admin/direction/vipstatus/add', async (req, res) => {
     try {
       res.render("vipstatus_add");
     } catch (error) {
@@ -93,7 +94,7 @@ app.get('/api/direction/vipstatus/add', async (req, res) => {
     }
   });
   
-app.post('/api/direction/vipstatus/save/:id', async (req, res) => {
+app.post('/admin/direction/vipstatus/save/:id', async (req, res) => {
     try {
       const userId = req.params;
 
@@ -112,14 +113,14 @@ app.post('/api/direction/vipstatus/save/:id', async (req, res) => {
         }
    );
   
-      res.redirect('/api/direction/vipstatus/');
+      res.redirect('/admin/direction/vipstatus/');
     } catch (error) {
       console.error(error);
       res.status(500).send('Произошла ошибка сервера');
     }
   });
 
-app.post('/api/direction/vipstatus/save_add', async (req, res) => {
+app.post('/admin/direction/vipstatus/save_add', async (req, res) => {
     try {
       vipStatusTools.updateLvl(req.body.level, 0, req.body.id)
       await VipStatus.create(
@@ -132,14 +133,14 @@ app.post('/api/direction/vipstatus/save_add', async (req, res) => {
         }
    );
   
-      res.redirect('/api/direction/vipstatus/');
+      res.redirect('/admin/direction/vipstatus/');
     } catch (error) {
       console.error(error);
       res.status(500).send('Произошла ошибка сервера');
     }
   });
 
-app.get('/api/direction/vipstatus/config', (req, res) => {
+app.get('/admin/direction/vipstatus/config', (req, res) => {
   const configData = require('./public/json/lvlVipStatus.json');
   res.json(configData);
 })

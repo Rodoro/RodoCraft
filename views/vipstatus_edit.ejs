@@ -8,7 +8,7 @@
 
 <body>
   <h1>Редактирование пользователя</h1>
-  <form method="POST" action="/api/direction/vipstatus/save/<%=user.userId%>">
+  <form method="POST" action="/admin/direction/vipstatus/save/<%=user.userId%>">
     <label for="name">Имя:</label>
     <input typetext" name="name" value="<%=user.userName%>" required><br>
 
@@ -39,10 +39,10 @@
     <br>
 
     <button type="submit">Сохранить</button>
-    <button><a href="/api/direction/vipstatus">Назад</a></button>
+    <button><a href="/admin/direction/vipstatus">Назад</a></button>
   </form>
 
-  <script src="js/upLvlVipStatus.js"></script>
+  <script src="js/admin/vipStatus/updateValueForm.js" type=""></script>
   <script>
     async function changeValue(field, amount) {
       const input = document.getElementById(field);
@@ -58,7 +58,7 @@
 
     async function upLvl(lvl, exp) {
       try {
-        const response = await fetch('/api/direction/vipstatus/config');
+        const response = await fetch('/admin/direction/vipstatus/config');
         const data = await response.json();
 
         if (exp >= data.lvlBorder[lvl - 1]) {

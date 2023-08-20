@@ -6,8 +6,8 @@
 </head>
 <body>
   <h1>VipStatus</h1>
-  <button><a href="/api/direction/vipstatus/add">Создать</a></button>
-  <button><a href="/api/main">Назад</a></button>
+  <button><a href="/admin/direction/vipstatus/add">Создать</a></button>
+  <button><a href="/admin/">Назад</a></button>
   <h1>Привелегии за роли</h1>
   <p>1. Vip чат + роль в дс <br>
     2. Уникальный префикс в майнкрафте + 1 кастомный предмет<br>
@@ -19,7 +19,7 @@
       <% for(var i=0; i<users.length; i++){%>
           <li> 
             <%=users[i].userName %>
-            <a href="/api/direction/vipstatus/edit/<%= users[i].userId %>">Редактировать</a>
+            <a href="/admin/direction/vipstatus/edit/<%= users[i].userId %>">Редактировать</a>
           </li>
       <%} %>
     </ol>
