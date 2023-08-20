@@ -10,24 +10,6 @@ const discordBot = require('./bot/discord/index.js');
 const { fail } = require('assert');
 const vipStatusTools = require('./lib/admin/vipStatus/updateLvl.js')
 
-//TODO 
-//+вынести функцию infoLvl в отдельный модуль
-//переписать клиентский js
-//переписать выдачу лвл, чтобы опыт не обнулялся при получение лвл
-//ограничение по количеству лвл от 0 до длины масива
-//добавить кнопку на панели вип статуса для изменение конфиг файла связанный с вип статусом
-//написать README.md
-//сделать обработку того что бд выключена
-//разобратся в папке views
-//добавить макеты 
-//переписать подключение к бд
-//переписать маршрутизацию
-//переписать файл с токенами
-//+перенаправить весь api на admin
-//дописать функцию updateLvl
-//сделать экспорт полностья модуля а не по одной функци
-//добавить поддомены заместо admin
-
 db = true;
 (async () => {
     await connect(databaseToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error, db = false);
