@@ -9,11 +9,10 @@ const VipStatus = require('./models/vipstatus.js');
 const databaseToken = "mongodb+srv://Raphael:As213411@rodoro.wzfcq.mongodb.net/RodoCraft?retryWrites=true&w=majority";
 const discordBot = require('./bot/discord/index.js');
 const { fail } = require('assert');
-const vipStatusTools = require('./lib/admin/vipStatus/updateLvl.js')
+const vipStatusTools = require('./lib/admin/vipStatus/updateLvl.js');
 
-db = true;
 (async () => {
-    await connect(databaseToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error, db = false);
+    await connect(databaseToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error);
 })();
 
 discordBot.botStart();
@@ -28,12 +27,9 @@ app.get('/admin/', (req, res) => {
 
 app.get('/admin/direction/vipstatus/', async (req, res) => {
   try {
-    const users = null;
-    if(db==true){
-      users = await VipStatus.find();
-    }
+    const users = await VipStatus.find();
 
-    res.render("vipstatus", {users, db});
+    res.render("vipstatus", {users});
   } catch (error) {
     console.error(error);
     res.status(500).send('Произошла ошибка сервера');
@@ -42,12 +38,9 @@ app.get('/admin/direction/vipstatus/', async (req, res) => {
 
 app.post('/admin/direction/vipstatus/', async (req, res) => {
   try {
-    const users = null;
-    if(db==true){
-      users = await VipStatus.find();
-    }
+    const users = await VipStatus.find();
 
-    res.render("vipstatus", {users, db});
+    res.render("vipstatus", {users});
   } catch (error) {
     console.error(error);
     res.status(500).send('Произошла ошибка сервера');
