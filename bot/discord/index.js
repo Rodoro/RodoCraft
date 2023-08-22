@@ -1,11 +1,12 @@
 const { token, guildId } = require('./../../public/json/bot.json');
+var client;
 
 
 module.exports = {
     botStart: function () {
         const { Client, Collection } = require('discord.js');
         const fs = require('fs');
-        const client = new Client({ intents: 131071 });
+         client = new Client({ intents: 131071 });
 
 
         client.commands = new Collection();
@@ -32,19 +33,10 @@ module.exports = {
 
         client.login(token);
     },
-    addRole: function (roleId, userId) {
-        const { Client } = require('discord.js');
-        const client = new Client({ intents: 131071 });
-
-        client.login(token)
-            .then(async() => {
-                 const guild = await client.guilds.cache.get(guildId);
+    addRole: async function (roleId, userId) {
+                const guild = await client.guilds.cache.get(guildId);
                 const member = await guild.members.fetch(userId);
-                const role = await guild.roles.cache.get(roleId);
 
                 await member.roles.add(roleId);
-                client.destroy;
-            })
-
     }
 }
