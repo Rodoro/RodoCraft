@@ -1,3 +1,20 @@
 {
-    "lvlBorder":[100, 400, 1000, 2500]
+   "lvlBorder": [
+      "100",
+      "400",
+      "1000",
+      "2500"
+   ],
+   "discord": {
+      "idRole": "1120767474527379557",
+      "idRoleNews": "1143454936642895873"
+   },
+   "minecraft": {
+      "prefics": "VIP",
+      "idCreativeServer": "1"
+   },
+   "craftToken": {
+      "customItem": "1",
+      "evredayGive": "20"
+   }
 }

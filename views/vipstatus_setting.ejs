@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VipStatus настройки</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h1>VipStatus настройки</h1>
+  <form method="POST" action="/admin/direction/vipstatus/setting/save">
+    <h2>Discord</h2>
+    <label for="idRole">Id роли</label>
+    <input type="number" name="idRole" value="<%=configData.discord.idRole%>" required>
+    <br>
+    <label for="idRoleNews">Id роли новостей</label>
+    <input type="number" name="idRoleNews" value="<%=configData.discord.idRoleNews%>" required>
+    <br>
+
+    <h2>Minnecraft</h2>
+    <label for="prefics">Префикс</label>
+    <input type="text" name="prefics" value="<%=configData.minecraft.prefics%>" required>
+    <br>
+    <label for="idCreativeServer">Id креатив сервера</label>
+    <input type="number" name="idCreativeServer" value="<%=configData.minecraft.idCreativeServer%>" required>
+    <br>
+
+    <h2>CraftToken</h2>
+    <label for="customItem">Сколько предметов</label>
+    <input type="number" name="customItem" value="<%=configData.craftToken.customItem%>" required>
+    <br>
+    <label for="evredayGive">Выдача ежедневно craftToken</label>
+    <input type="number" name="evredayGive" value="<%=configData.craftToken.evredayGive%>" required>
+    <br>
+
+    <h2>Уровни</h2>
+    <ol>
+    <% for(var i=0; i<configData.lvlBorder.length; i++){%>
+      <li>
+        <input type="number" name="lvlBorder<%= i %>" value="<%=configData.lvlBorder[i]%>" required>
+      </li>
+    <% } %>
+    </ol>
+    <button type="submit">Сохранить</button>
+    <button><a href="/admin/direction/vipstatus">Назад</a></button>
+  </form>
+</body>
+</html>
