@@ -119,6 +119,19 @@ app.post('/admin/direction/vipstatus/save_add', async (req, res) => {
     }
   });
 
+app.get('/admin/direction/vipstatus/delete/:id', async (req, res) => {
+    try {
+      const userId = req.params;
+
+      await VipStatus.deleteOne({ userId: userId.id });
+  
+      res.redirect('/admin/direction/vipstatus/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Произошла ошибка сервера');
+    }
+  });
+
 app.get('/admin/direction/vipstatus/config', (req, res) => {
   const configData = require('./public/json/lvlVipStatus.json');
   res.json(configData);
