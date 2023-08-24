@@ -6,6 +6,7 @@ const path = require('path')
 const bodyParser = require("body-parser");
 const databaseToken = "mongodb+srv://Raphael:As213411@rodoro.wzfcq.mongodb.net/RodoCraft?retryWrites=true&w=majority";
 const discordBot = require('./bot/discord/index.js');
+const expressLayouts = require('express-ejs-layouts');
 
 (async () => {
     await connect(databaseToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error);
@@ -14,6 +15,8 @@ const discordBot = require('./bot/discord/index.js');
 discordBot.botStart();
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
+app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 

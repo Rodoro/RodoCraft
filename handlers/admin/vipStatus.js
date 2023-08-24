@@ -7,7 +7,7 @@ exports.main  = async (req, res) => {
         try {
           const users = await VipStatus.find();
     
-          res.render("vipstatus", {users});
+          res.render("admin/vipStatus/vipstatus", {users});
         } catch (err) {
           return res.next(err);
         }
@@ -22,14 +22,14 @@ exports.edit = async (req, res) => {
       return res.next();
     }
 
-    res.render("vipstatus_edit", {user});
+    res.render("admin/vipStatus/vipstatus_edit", {user});
   } catch (err) {
     return res.next(err);
   }
 }
 exports.add = async (req, res) => {
   try {
-    res.render("vipstatus_add");
+    res.render("admin/vipStatus/vipstatus_add");
   } catch (err) {
     return res.next(err);
   }
@@ -91,7 +91,7 @@ exports.config = async (req, res) => {
   res.json(configData);
 }
 exports.setting = async (req, res) => {
-  res.render('vipstatus_setting', {configData});
+  res.render('admin/vipStatus/vipstatus_setting', {configData});
 }
 exports.saveSetting = async (req, res) => {
   fs.readFile('public/json/lvlVipStatus.json', 'utf8', (err, data) => {
