@@ -34,9 +34,9 @@ module.exports = {
         client.login(token);
     },
     addRole: async function (roleId, userId) {
-                const guild = await client.guilds.cache.get(guildId);
-                const member = await guild.members.fetch(userId);
+        const guild = await client.guilds.cache.get(guildId);
+        const member = await guild.members.fetch(userId);
 
-                await member.roles.add(roleId);
+        await member.roles.add(roleId);
     }
 }
