@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { token, clientId, guildId } = require('../../../../public/json/bot.json');
+const { token, clientId, guildId } = require('./../../../../private/json/discordBot.json');
 
 module.exports = (client) => {
     client.handleCommands = async () => {

@@ -1,4 +1,4 @@
-const { token, guildId } = require('./../../public/json/bot.json');
+const { token, guildId } = require('./../../private/json/discordBot.json');
 var client;
 
 

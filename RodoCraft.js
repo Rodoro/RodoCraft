@@ -4,12 +4,12 @@ const app = express();
 const port = 3000;
 const path = require('path')
 const bodyParser = require("body-parser");
-const databaseToken = "mongodb+srv://Raphael:As213411@rodoro.wzfcq.mongodb.net/RodoCraft?retryWrites=true&w=majority";
+const { mongoToken } = require('./private/json/db.json');
 const discordBot = require('./bot/discord/index.js');
 const expressLayouts = require('express-ejs-layouts');
 
 (async () => {
-    await connect(databaseToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error);
+    await connect(mongoToken, { useNewUrlParser: true, useUnifiedTopology: true }).catch(console.error);
 })();
 
 discordBot.botStart();
