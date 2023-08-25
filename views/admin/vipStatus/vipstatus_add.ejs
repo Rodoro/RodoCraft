@@ -1,4 +1,5 @@
 <%-contentFor('body') %>
+<script src="/js/admin/vipStatus.js"></script>
   <h1>Создание пользователя</h1>
 
   <form method="POST" action="/admin/direction/vipstatus/add/save">
@@ -12,66 +13,30 @@
 
     <label for="level">Уровень:</label>
     <input type="number" name="level" id="lvl" value="1" required>
-    <button type="button" onclick="changeValue('lvl', -1)">-</button>
-    <button type="button" onclick="changeValue('lvl', 1)">+</button>
+    <button type="button" onclick="decreaseValue('lvl')">-</button>
+    <button type="button" onclick="increaseValue('lvl')">+</button>
     <br>
 
     <label for="experience">Опыт:</label>
     <input type="number" name="experience" id="experience" value="0" required>
-    <button type="button" onclick="changeValue('experience', -100)">-100</button>
-    <button type="button" onclick="changeValue('experience', -10)">-10</button>
-    <button type="button" onclick="changeValue('experience', -1)">-1</button>
-    <button type="button" onclick="changeValue('experience', 1)">+1</button>
-    <button type="button" onclick="changeValue('experience', 10)">+10</button>
-    <button type="button" onclick="changeValue('experience', 100)">+100</button>
+    <button type="button" onclick="updateValue('experience', -100)">-100</button>
+    <button type="button" onclick="updateValue('experience', -10)">-10</button>
+    <button type="button" onclick="updateValue('experience', -1)">-1</button>
+    <button type="button" onclick="updateValue('experience', 1)">+1</button>
+    <button type="button" onclick="updateValue('experience', 10)">+10</button>
+    <button type="button" onclick="updateValue('experience', 100)">+100</button>
     <br>
 
     <label for="balance">Баланс:</label>
     <input type="number" name="money" id="balance" value="0" required>
-    <button type="button" onclick="changeValue('balance', -100)">-100</button>
-    <button type="button" onclick="changeValue('balance', -10)">-10</button>
-    <button type="button" onclick="changeValue('balance', -1)">-1</button>
-    <button type="button" onclick="changeValue('balance', 1)">+1</button>
-    <button type="button" onclick="changeValue('balance', 10)">+10</button>
-    <button type="button" onclick="changeValue('balance', 100)">+100</button>
+    <button type="button" onclick="updateValue('balance', -100)">-100</button>
+    <button type="button" onclick="updateValue('balance', -10)">-10</button>
+    <button type="button" onclick="updateValue('balance', -1)">-1</button>
+    <button type="button" onclick="updateValue('balance', 1)">+1</button>
+    <button type="button" onclick="updateValue('balance', 10)">+10</button>
+    <button type="button" onclick="updateValue('balance', 100)">+100</button>
     <br>
 
     <button type="submit">Сохранить</button>
     <button><a href="/admin/direction/vipstatus">Назад</a></button>
   </form>
-
-  <script>
-    async function changeValue(field, amount) {
-      const input = document.getElementById(field);
-      if (field == "experience") {
-        const input2 = document.getElementById("lvl")
-        const updateValue = await upLvl(parseInt(input2.value), parseInt(input.value) + amount);
-        input.value = updateValue.exp;
-        input2.value = updateValue.lvl;
-      } else {
-        input.value = parseInt(input.value) + amount;
-      }
-    }
-
-    async function upLvl(lvl, exp) {
-      try {
-        const response = await fetch('/admin/direction/vipstatus/config');
-        const data = await response.json();
-
-        if (exp >= data.lvlBorder[lvl - 1]) {
-          lvl += 1;
-          exp -= data.lvlBorder[lvl - 2];
-        }
-        return {
-          lvl,
-          exp
-        };
-      } catch (error) {
-        console.error(error);
-        return {
-          lvl,
-          exp
-        };
-      }
-    }
-  </script>
