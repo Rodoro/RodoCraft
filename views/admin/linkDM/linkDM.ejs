@@ -1,0 +1,11 @@
+<%-contentFor('body') %>
+  <h1>Привязка акаунтов</h1>
+  <button><a href="/admin/">Назад</a></button>
+    <ol>
+      <% for(var i=0; i<users.length; i++){%>
+          <li> 
+            <%=users[i].userName %>
+            <a href="/admin/direction/linkDM/edit/<%= users[i].userId %>">Редактировать</a>
+          </li>
+      <%} %>
+    </ol>

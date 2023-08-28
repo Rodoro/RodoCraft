@@ -16,4 +16,6 @@ router.get('/admin/direction/vipstatus/config', admin.vipStatus.config)
 router.get('/admin/direction/vipstatus/setting', admin.vipStatus.setting)
 router.post('/admin/direction/vipstatus/setting/save', admin.vipStatus.saveSetting)
 
+router.get('/admin/direction/linkDM', admin.linkDM.main)
+
 module.exports = router;
