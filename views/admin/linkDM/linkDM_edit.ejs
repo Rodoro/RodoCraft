@@ -1,0 +1,57 @@
+<%-contentFor('body') %>
+<script src="/js/admin/linkDM.js"></script>
+  <h1>Редактирование пользователя</h1>
+  <form method="POST" action="/admin/direction/linkDM/edit/<%=user.discordId%>/save">
+    <label for="discordName">Дискорд имя</label>
+    <input type="text" name="discordName" value="<%=user.discordName%>" required><br>
+
+    <label for="discordId">Дискорд id:</label>
+    <input type="text" name="discordId" value="<%=user.discordId%>" required>
+    <br>
+
+    <label for="minecraftName">Майнкрафт имя:</label>
+    <input type="text" name="minecraftName" value="<%=user.minecraftName%>" required>
+    <br>
+
+    <label for="age">Возраст:</label>
+    <input type="number" name="age" value="<%=user.age%>" required>
+    <br>
+
+    <label for="howKnow">От куда узнали:</label>
+    <input type="text" name="howKnow" value="<%=user.howKnow%>" required>
+    <br>
+
+    <label for="hasMicrophone">Наличие микрофона:</label>
+    <input type="text" name="hasMicrophone" value="<%=user.hasMicrophone%>" required>
+    <br>
+
+    <label for="notification">Уведомление:</label>
+    <input type="checkbox" name="notification" value="<% if (user.hasMicrophone) { %>checked<% } %>>" required>
+    <br>
+
+    <label for="whitelist">Вайтлист:</label>
+    <% for (let i = 0; i < user.whitelist.length; i++) { %>
+      <div>
+        <input type="text" name="whitelist" value="<%= user.whitelist[i] %>">
+        <button type="button" onclick="removeField(this)">-</button>
+      </div>
+    <% } %>
+    <div id="whitelist-container"></div>
+    <button type="button" onclick="addField('whitelist-container')">+</button>
+    <br>
+
+    <label for="prefixes">Префиксы:</label>
+    <% for (let i = 0; i < user.prefixes.length; i++) { %>
+      <div>
+        <input type="text" name="prefixes" value="<%= user.prefixes[i] %>">
+        <button type="button" onclick="removeField(this)">-</button>
+      </div>
+    <% } %>
+    <div id="prefixes-container"></div>
+    <button type="button" onclick="addField('prefixes-container')">+</button>
+    <br>
+
+    <button type="submit">Сохранить</button>
+    <button type="button"><a href="/admin/direction/linkDM/delete/<%=user.userId%>">Удалить</a></button>
+    <button><a href="/admin/direction/linkDM">Назад</a></button>
+  </form>

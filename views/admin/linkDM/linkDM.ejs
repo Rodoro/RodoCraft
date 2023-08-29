@@ -4,8 +4,8 @@
     <ol>
       <% for(var i=0; i<users.length; i++){%>
           <li> 
-            <%=users[i].userName %>
-            <a href="/admin/direction/linkDM/edit/<%= users[i].userId %>">Редактировать</a>
+            <%=users[i].discordName %>
+            <a href="/admin/direction/linkDM/edit/<%= users[i].discordId %>">Редактировать</a>
           </li>
       <%} %>
     </ol>
