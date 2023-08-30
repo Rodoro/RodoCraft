@@ -3,36 +3,36 @@
   <h1>Редактирование пользователя</h1>
   <form method="POST" action="/admin/direction/linkDM/edit/<%=user.discordId%>/save">
     <label for="discordName">Дискорд имя</label>
-    <input type="text" name="discordName" value="<%=user.discordName%>" required><br>
+    <input type="text" name="discordName" value="<%=user.discordName%>"><br>
 
     <label for="discordId">Дискорд id:</label>
-    <input type="text" name="discordId" value="<%=user.discordId%>" required>
+    <input type="text" name="discordId" value="<%=user.discordId%>">
     <br>
 
     <label for="minecraftName">Майнкрафт имя:</label>
-    <input type="text" name="minecraftName" value="<%=user.minecraftName%>" required>
+    <input type="text" name="minecraftName" value="<%=user.minecraftName%>">
     <br>
 
     <label for="age">Возраст:</label>
-    <input type="number" name="age" value="<%=user.age%>" required>
+    <input type="number" name="age" value="<%=user.age%>">
     <br>
 
     <label for="howKnow">От куда узнали:</label>
-    <input type="text" name="howKnow" value="<%=user.howKnow%>" required>
+    <input type="text" name="howKnow" value="<%=user.howKnow%>">
     <br>
 
     <label for="hasMicrophone">Наличие микрофона:</label>
-    <input type="text" name="hasMicrophone" value="<%=user.hasMicrophone%>" required>
+    <input type="text" name="hasMicrophone" value="<%=user.hasMicrophone%>">
     <br>
 
     <label for="notification">Уведомление:</label>
-    <input type="checkbox" name="notification" value="<% if (user.hasMicrophone) { %>checked<% } %>>" required>
+    <input type="checkbox" name="notification" value="<% if (user.hasMicrophone) { %>checked<% } %>>">
     <br>
 
     <label for="whitelist">Вайтлист:</label>
     <% for (let i = 0; i < user.whitelist.length; i++) { %>
       <div>
-        <input type="text" name="whitelist" value="<%= user.whitelist[i] %>">
+        <input type="text" name="whitelist-container" value="<%= user.whitelist[i] %>">
         <button type="button" onclick="removeField(this)">-</button>
       </div>
     <% } %>
@@ -43,7 +43,7 @@
     <label for="prefixes">Префиксы:</label>
     <% for (let i = 0; i < user.prefixes.length; i++) { %>
       <div>
-        <input type="text" name="prefixes" value="<%= user.prefixes[i] %>">
+        <input type="text" name="prefixes-container" value="<%= user.prefixes[i] %>">
         <button type="button" onclick="removeField(this)">-</button>
       </div>
     <% } %>

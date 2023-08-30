@@ -28,10 +28,19 @@ exports.saveEdit = async (req, res) => {
   try {
     const userId = req.params;
 
-    const user = await LinkDM.findOne({ discordId: userId.discordId });
+    var whitelist = [];
+    var prefixes = [];
+    for (const key in req.body) {
+      if (key.startsWith('whitelist-containe')) {
+        whitelist.push(req.body[key]);
+      }
+      if (key.startsWith('prefixes-container')) {
+        prefixes.push(req.body[key]);
+      }
+    }
 
     await LinkDM.updateOne(
-      { discordId: userId.discordId },
+      { discordId: userId.id },
       {
         discordName: req.body.discordName,
         discordId: req.body.discordId,
@@ -40,8 +49,8 @@ exports.saveEdit = async (req, res) => {
         howKnow: req.body.howKnow,
         hasMicrophone: req.body.hasMicrophone,
         notification: req.body.notification,
-        whitelist: req.getParameterValues("inputText"),
-        prefixes: req.getParameterValues("inputText"),
+        whitelist: whitelist,
+        prefixes: prefixes,
       }
  );
 
