@@ -59,3 +59,14 @@ exports.saveEdit = async (req, res) => {
     return res.next(err);
   }
 }
+exports.delete = async (req, res) => {
+  try {
+    const userId = req.params;
+
+    await LinkDM.deleteOne({ userId: userId.id });
+
+    res.redirect('/admin/direction/linkDM/');
+  } catch (err) {
+    return res.next(err);
+  }
+}

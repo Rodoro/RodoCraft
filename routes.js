@@ -20,5 +20,6 @@ router.get('/admin/direction/linkDM', admin.linkDM.main)
 router.post('/admin/direction/linkDM', admin.linkDM.main)
 router.get('/admin/direction/linkDM/edit/:id', admin.linkDM.edit)
 router.post('/admin/direction/linkDM/edit/:id/save', admin.linkDM.saveEdit)
+router.get('/admin/direction/linkDM/delete/:id', admin.linkDM.delete)
 
 module.exports = router;
