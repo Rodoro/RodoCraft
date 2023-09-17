@@ -38,5 +38,11 @@ module.exports = {
         const member = await guild.members.fetch(userId);
 
         await member.roles.add(roleId);
+    },
+    removeRole: async function(roleId, userId) {
+        const guild = await client.guilds.cache.get(guildId);
+        const member = await guild.members.fetch(userId);
+
+        await member.roles.remove(roleId);
     }
 }

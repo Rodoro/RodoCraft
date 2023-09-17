@@ -79,8 +79,10 @@ exports.saveAdd = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const userId = req.params;
+    const user = await VipStatus.findOne({ userId: userId.id });
 
     await VipStatus.deleteOne({ userId: userId.id });
+    vipStatusTools.updateLvl(0, user.lvl, userId.id)
 
     res.redirect('/admin/direction/vipstatus/');
   } catch (err) {
